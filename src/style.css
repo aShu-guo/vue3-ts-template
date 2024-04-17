@@ -1,0 +1,26 @@
+body {
+  font-family: 'Noto Sans SC', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.text-prefix {
+  position: relative;
+  margin-bottom: 11px;
+}
+
+.text-prefix:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 3px;
+  height: 12px;
+  border-radius: 2px;
+  left: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(#53c5e9, #5ce0fa, #388ecd);
+}
