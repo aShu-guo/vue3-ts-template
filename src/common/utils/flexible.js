@@ -10,6 +10,7 @@
       document.addEventListener('DOMContentLoaded', setBodyFontSize);
     }
   }
+
   setBodyFontSize();
 
   // set 1rem = viewWidth / 10

@@ -2,11 +2,10 @@ import { isNull, isUndefined } from 'lodash-es';
 
 export interface CacheEntity<T> {
   value: T;
-  start?: number;
-  expire?: number;
+  start: number;
+  expire: number;
 }
 
-type Value = string | object | number | boolean | null | undefined;
 type Key = string;
 
 /**
@@ -14,7 +13,7 @@ type Key = string;
  * @param key
  * @param value
  */
-export function setValue(key: Key, value: Value) {
+export function setValue<T = any>(key: Key, value: CacheEntity<T>) {
   if (isNull(value) || isUndefined(value)) {
     localStorage.setItem(key, '');
   } else {
@@ -27,21 +26,10 @@ export function setValue(key: Key, value: Value) {
  * @param key
  * @returns {any}
  */
-export function getValue<T>(key: Key): T | undefined {
+export function getValue<T>(key: Key): CacheEntity<T> | undefined {
   const value = localStorage.getItem(key);
   if (value) {
-    return JSON.parse(value);
-  }
-}
-
-/**
- * 获取 存活的 key对应value
- * @param key
- * @returns {string|any}
- */
-export function getAliveValue<T>(key: Key): CacheEntity<T> | undefined {
-  if (!isExpire(key)) {
-    return getValue<CacheEntity<T>>(key);
+    return JSON.parse(value) as CacheEntity<T>;
   }
 }
 
@@ -51,7 +39,7 @@ export function getAliveValue<T>(key: Key): CacheEntity<T> | undefined {
  * @param value
  * @param expire
  */
-export function setAliveValue(key: Key, value: Value, expire = 7 * 24 * 60 * 60 * 1000) {
+export function setAliveValue<T>(key: Key, value: CacheEntity<T>, expire = 7 * 24 * 60 * 60 * 1000) {
   setValue(key, {
     value,
     start: Date.now().valueOf(),
@@ -63,14 +51,24 @@ export function setAliveValue(key: Key, value: Value, expire = 7 * 24 * 60 * 60 
  * token 是否有效
  * @returns {boolean}
  */
-export function isExpire(key: Key): boolean {
-  let isExpire = true;
-  const data = getValue<CacheEntity<unknown>>(key);
+type ExpireResult<T> = { isValid: boolean; value: CacheEntity<T> | undefined };
 
-  if (data && Date.now().valueOf() - data.start! < data.expire!) {
-    isExpire = false;
+export function isExpire<T>(key: string): ExpireResult<T>;
+export function isExpire(value: CacheEntity<any>): boolean;
+export function isExpire<T>(kv: string | CacheEntity<T>): ExpireResult<T> | boolean {
+  if (typeof kv === 'string') {
+    const value = getValue<T>(kv);
+    let isValid = !!value;
+    if (value && Date.now().valueOf() - value.start < value.expire) {
+      isValid = false;
+    }
+    return {
+      isValid,
+      value,
+    };
+  } else {
+    return Date.now().valueOf() - kv.start < kv.expire;
   }
-  return isExpire;
 }
 
 /**

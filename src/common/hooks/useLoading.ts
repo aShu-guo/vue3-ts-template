@@ -5,6 +5,6 @@ export default function useLoading(defaultValue?: boolean) {
   };
   return {
     setLoading,
-    loading,
+    loading: readonly(loading),
   };
 }

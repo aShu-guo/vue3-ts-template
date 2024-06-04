@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { handleGeneralError, handleNetworkError } from './status';
-import { getAliveValue } from '@/common/cache';
+import { isExpire } from '@/common/cache';
 import { message } from 'ant-design-vue/es';
 import { CacheKey } from '@/common/cache/key';
+
 type RequestConfig = AxiosRequestConfig & { unAuth?: boolean };
 
 axios.defaults.timeout = 60000;
@@ -27,11 +28,9 @@ const axiosInstance = axios.create(options);
 // axios实例拦截请求
 axiosInstance.interceptors.request.use(
   (config) => {
-    if (!(config as RequestConfig).unAuth) {
-      const entity = getAliveValue<string>(CacheKey.ACCESS_TOKEN);
-      if (entity?.value) {
-        config.headers['Authorization'] = entity.value;
-      }
+    const { isValid, value } = isExpire<string>(CacheKey.ACCESS_TOKEN);
+    if (!(config as RequestConfig).unAuth && isValid && value) {
+      config.headers['Authorization'] = value.value;
     }
     return config;
   },

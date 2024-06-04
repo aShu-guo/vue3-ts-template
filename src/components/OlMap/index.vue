@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-1920px h-1080px" id="map"></div>
+    <div id="map" class="w-1920px h-1080px"></div>
     <div v-if="uav.list.length > 0" class="markers-box absolute">
       <img
         v-for="item in uav.list"
@@ -8,8 +8,8 @@
         :src="item.uavNum === uav.item?.uavNum ? UavIconSelected : UavIcon"
         class="w-54px object-contain"
         :class="'marker-' + item.uavNum"
-        @click="toggle(item)"
         alt=""
+        @click="toggle(item)"
       />
     </div>
 
