@@ -8,7 +8,10 @@ import 'animate.css';
 import router from '@/router';
 import 'dayjs/locale/zh-cn';
 import dayjs from 'dayjs';
+import { Ion } from 'cesium';
 
 dayjs.locale('zh-cn');
+
+Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_TOKEN;
 
 createApp(App).use(router).mount('#app');

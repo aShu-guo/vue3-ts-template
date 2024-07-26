@@ -9,6 +9,14 @@ const router = createRouter({
       path: '/',
       component: () => import('@/pages/screen/index.vue'),
     },
+    {
+      path: '/worker1',
+      component: () => import('@/pages/worker/index.vue'),
+    },
+    {
+      path: '/worker2',
+      component: () => import('@/pages/worker/index2.vue'),
+    },
   ],
 });
 

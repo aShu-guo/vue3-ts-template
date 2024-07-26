@@ -13,7 +13,7 @@ type Key = string;
  * @param key
  * @param value
  */
-export function setValue<T = any>(key: Key, value: CacheEntity<T>) {
+export function setValue<T = unknown>(key: Key, value: CacheEntity<T>) {
   if (isNull(value) || isUndefined(value)) {
     localStorage.setItem(key, '');
   } else {

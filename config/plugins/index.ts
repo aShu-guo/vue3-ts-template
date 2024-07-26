@@ -13,6 +13,7 @@ import { ConfigZipPackPlugin } from './zip-pack';
 import { ConfigProgressPlugin } from './progress';
 // import { ConfigImageminPlugin } from './imagemin';
 import { ConfigLegacyPlugin } from './legacy.ts';
+import { ConfigCesiumStatic } from './import-cesium-static.ts';
 
 export function createVitePlugins(isBuild: boolean, buildEnv: 'prod' | 'test') {
   const vitePlugins: (PluginOption | PluginOption[])[] = [vue(), UnoCSS()];
@@ -44,6 +45,8 @@ export function createVitePlugins(isBuild: boolean, buildEnv: 'prod' | 'test') {
   vitePlugins.push(ConfigLegacyPlugin(isBuild));
 
   // vitePlugins.push(ConfigImageminPlugin());
+  // 引入cesium
+  vitePlugins.push(ConfigCesiumStatic());
 
   return vitePlugins;
 }

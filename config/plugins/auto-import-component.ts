@@ -5,7 +5,7 @@
  * @description 按需加载，自动引入组件
  */
 import Components from 'unplugin-vue-components/vite';
-// import { VueUseComponentsResolver } from 'unplugin-vue-components/resolvers';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export const AutoRegistryComponents = () => {
   return Components({
@@ -18,12 +18,6 @@ export const AutoRegistryComponents = () => {
     directives: true,
     include: [/\.vue$/, /\.vue\?vue/],
     exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
-    resolvers: [
-      /*AntDesignVueResolver({
-        importStyle: 'less',
-        resolveIcons: true,
-      }),*/
-      // VueUseComponentsResolver(),
-    ],
+    resolvers: [ElementPlusResolver()],
   });
 };

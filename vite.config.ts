@@ -1,6 +1,7 @@
 import { ConfigEnv, UserConfig } from 'vite';
 import { createVitePlugins } from './config/plugins';
 import { resolve } from 'path';
+import { cesiumBaseUrl } from './config/plugins/import-cesium-static';
 
 // import { genAlias } from './config/vite/plugins/write-cdn';
 
@@ -15,6 +16,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   return {
     envDir: './env',
+    define: {
+      // Define relative base path in cesium for loading assets
+      // https://vitejs.dev/config/shared-options.html#define
+      CESIUM_BASE_URL: JSON.stringify(`/${cesiumBaseUrl}`),
+    },
     esbuild: {
       drop: isBuild ? ['console', 'debugger'] : [],
     },

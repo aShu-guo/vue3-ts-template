@@ -3,7 +3,7 @@
  * @description 自动引入vue3的组合API，引入后使用时无需再import对应API
  */
 import AutoImport from 'unplugin-auto-import/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export const AutoImportDeps = () => {
   return AutoImport({
@@ -19,6 +19,6 @@ export const AutoImportDeps = () => {
       'vue-router',
       '@vueuse/core',
     ],
-    resolvers: [AntDesignVueResolver()],
+    resolvers: [ElementPlusResolver()],
   });
 };

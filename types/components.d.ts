@@ -10,6 +10,7 @@ declare module 'vue' {
     OlMap: typeof import('./../src/components/OlMap/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SMap: typeof import('./../src/components/SMap/index.vue')['default']
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']
   }
 }
