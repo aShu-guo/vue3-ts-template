@@ -1,10 +1,9 @@
 <template>
-  <SMap tile-type="gaode" />
+  <!--  <SMap tile-type="gaode" />-->
+  <OlMap />
 </template>
 
 <script setup lang="ts">
-import '@/common/utils/flexible';
-
 defineOptions({ name: 'Screen' });
 </script>
 

@@ -7,13 +7,13 @@
 <script setup lang="ts">
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 import useViewer from '@components/SMap/hooks/useViewer.ts';
-import { Props } from '@components/SMap/helper/types.ts';
+import { SMapProps } from '@components/SMap/helper/types.ts';
 import { Cesium3DTileset, Cesium3DTileStyle } from 'cesium';
 import HZ3Dtiles from '@assets/3dtiles/hangzhou/tileset.json?url';
 
 defineOptions({ name: 'SMap' });
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<SMapProps>(), {
   width: '100vw',
   height: '100vh',
 });

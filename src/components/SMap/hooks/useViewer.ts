@@ -1,9 +1,9 @@
 import { CameraEventType, Cartesian3, ImageryLayer, KeyboardEventModifier, Terrain, Viewer } from 'cesium';
 import { Ref } from 'vue';
-import { AMapTilesUrl } from '@components/SMap/helper/amap.ts';
 import AMapImageryProvider from '@/common/transform/AMapImageryProvider.ts';
 import { defaultViewerOptions } from '@components/SMap/helper';
 import { Degree } from '@components/SMap/helper/types.ts';
+import { AMapTemplateURL } from '@/common/constants/map-layer-source.ts';
 
 const useViewer = (
   viewContainer: Ref<HTMLElement | undefined>,
@@ -22,7 +22,7 @@ const useViewer = (
       viewer.value = new Viewer(viewContainer.value, {
         baseLayer: new ImageryLayer(
           new AMapImageryProvider({
-            url: AMapTilesUrl.Imagery,
+            url: AMapTemplateURL.Imagery,
             minimumLevel: 3,
             maximumLevel: 18,
           }),
@@ -37,7 +37,7 @@ const useViewer = (
       viewer.value.imageryLayers.add(
         new ImageryLayer(
           new AMapImageryProvider({
-            url: AMapTilesUrl.ImageryRoadLabel,
+            url: AMapTemplateURL.ImageryRoadLabel,
             minimumLevel: 3,
             maximumLevel: 18,
           }),

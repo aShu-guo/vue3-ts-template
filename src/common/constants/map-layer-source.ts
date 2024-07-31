@@ -1,4 +1,4 @@
-export const AMapTilesUrl = {
+export const AMapTemplateURL = {
   // 矢量图
   Vector: '//webrd{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
   // 卫星图
@@ -16,3 +16,5 @@ export const AMapTilesUrl = {
   // 卫星图的道路和标注
   ImageryRoadLabel: '//webst{s}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=8',
 };
+
+export const TMapWMTSLayerURL = {};
