@@ -24,7 +24,7 @@ const style = computed(() => ({
 }));
 
 const olmap = ref();
-const { map } = useMap(olmap);
+const { map } = useMap(olmap, {}, 'AMap');
 console.log('>>>map:', map);
 </script>
 

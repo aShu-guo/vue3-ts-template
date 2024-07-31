@@ -1,5 +1,5 @@
 import { UrlTemplateImageryProvider } from 'cesium';
-import GCJ02TilingScheme from '@/common/transform/GCJ02TilingScheme.ts';
+import GCJ02TilingScheme from '@/common/gis/transform/GCJ02TilingScheme.ts';
 
 class AMapImageryProvider extends UrlTemplateImageryProvider {
   constructor(options: UrlTemplateImageryProvider.ConstructorOptions) {

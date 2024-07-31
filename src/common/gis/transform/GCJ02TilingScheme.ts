@@ -1,5 +1,5 @@
 import { Cartesian2, Cartographic, Math as CesiumMath, WebMercatorProjection, WebMercatorTilingScheme } from 'cesium';
-import { GCJ02ToWGS84, WGS84ToGCJ02 } from '@/common/transform/index.ts';
+import { GCJ02ToWGS84, WGS84ToGCJ02 } from '@/common/gis/transform/index.ts';
 
 class GCJ02TilingScheme extends WebMercatorTilingScheme {
   constructor(options?: any) {

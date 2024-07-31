@@ -1,6 +1,6 @@
 import { CameraEventType, Cartesian3, ImageryLayer, KeyboardEventModifier, Terrain, Viewer } from 'cesium';
 import { Ref } from 'vue';
-import AMapImageryProvider from '@/common/transform/AMapImageryProvider.ts';
+import AMapImageryProvider from '@/common/gis/transform/AMapImageryProvider.ts';
 import { defaultViewerOptions } from '@components/SMap/helper';
 import { Degree } from '@components/SMap/helper/types.ts';
 import { AMapTemplateURL } from '@/common/constants/map-layer-source.ts';

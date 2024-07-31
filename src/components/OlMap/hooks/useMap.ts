@@ -4,20 +4,12 @@ import { Map, View } from 'ol';
 import { defaults } from 'ol/control';
 import { fromLonLat } from 'ol/proj';
 import { MapOptions } from 'ol/Map';
-import getWMTSLayer from '@components/OlMap/helper/getWMTSLayer.ts';
+import { getAMapXYZLayer, getTMapWMTSLayer } from '@/common/gis/layers/getLayer.ts';
 
 const useMap = (
   container: HTMLElement | Ref<HTMLElement | undefined> | string,
-  options: MapOptions = {
-    controls: defaults({ attribution: false, zoom: false, rotate: false }).extend([]),
-    layers: [getWMTSLayer('img_w', 'EPSG:3857'), getWMTSLayer('cia_w', 'EPSG:3857')],
-    view: new View({
-      center: fromLonLat([120.004686, 30.297546]),
-      zoom: 11,
-      maxZoom: 18,
-      minZoom: 8,
-    }),
-  },
+  options?: Omit<MapOptions, 'layers' | 'view'>,
+  tileType: 'TMap' | 'AMap' = 'TMap',
 ) => {
   const map = shallowRef<Map>();
 
@@ -30,6 +22,17 @@ const useMap = (
     if (el) {
       map.value = new Map({
         target: el as HTMLElement,
+        layers:
+          tileType === 'TMap'
+            ? [getTMapWMTSLayer('img_w', 'EPSG:3857'), getTMapWMTSLayer('cia_w', 'EPSG:3857')]
+            : getAMapXYZLayer('img'),
+        view: new View({
+          center: fromLonLat([120.004686, 30.297546]),
+          zoom: 11,
+          maxZoom: 18,
+          minZoom: 8,
+        }),
+        controls: defaults({ attribution: false, zoom: false, rotate: false }).extend([]),
         ...options,
       });
     }
