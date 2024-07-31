@@ -1,8 +1,3 @@
-/**
- * @Author: Caven Chen
- * @Date: 2020-01-15
- */
-
 import { UrlTemplateImageryProvider } from 'cesium';
 import GCJ02TilingScheme from '@/common/transform/GCJ02TilingScheme.ts';
 
@@ -15,4 +10,5 @@ class AMapImageryProvider extends UrlTemplateImageryProvider {
     super(options);
   }
 }
+
 export default AMapImageryProvider;

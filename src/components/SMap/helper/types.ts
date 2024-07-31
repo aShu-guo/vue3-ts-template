@@ -3,3 +3,9 @@ export interface Props {
   height?: string | number;
   tileType: 'gaode' | 'tianditu';
 }
+
+export interface Degree {
+  longitude: number;
+  latitude: number;
+  height?: number;
+}

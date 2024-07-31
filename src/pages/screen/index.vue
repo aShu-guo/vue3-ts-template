@@ -1,5 +1,5 @@
 <template>
-  <SMap tile-type="tianditu" />
+  <SMap tile-type="gaode" />
 </template>
 
 <script setup lang="ts">
